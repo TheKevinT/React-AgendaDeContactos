@@ -14,9 +14,10 @@ const TablaContactos = ({ contactos = [] }) => {
         </thead>
         <tbody>
           {contactos.map((contacto) => {
+            const showId = contacto.id.split("-"); 
             return (
               <tr key={contacto.id}>
-                <td>{contacto.id}</td>
+                <td>{showId[0]}</td>
                 <td>{contacto.nombre}</td>
                 <td>{contacto.numero}</td>
                 <td>
