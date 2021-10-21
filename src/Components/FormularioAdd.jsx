@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {v4 as uuid} from "uuid";
+import { v4 as uuid } from "uuid";
 
 const FormularioAdd = ({ dispatch }) => {
   const [data, setData] = useState({
@@ -25,11 +25,15 @@ const FormularioAdd = ({ dispatch }) => {
   const _handleAdd = (e) => {
     e.preventDefault();
     dispatch(actionAdd);
+    setData({
+      nombre:'',
+      numero:''
+    })
   };
 
   return (
     <>
-      <form>
+      <form onSubmit={_handleAdd}>
         <div className="container">
           <div className="mb-3">
             <label className="form-label mx-1 d-grid gap-2">Nombre</label>
@@ -54,11 +58,7 @@ const FormularioAdd = ({ dispatch }) => {
             />
           </div>
           <div className="mx-1 d-grid gap-2">
-            <button
-              onClick={_handleAdd}
-              type="submit"
-              className="btn btn-success mb-3"
-            >
+            <button type="submit" className="btn btn-success mb-3">
               Agregar
             </button>
           </div>
