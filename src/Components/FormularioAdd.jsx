@@ -1,20 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 
-const FormularioAdd = ({dispatch}) => {
-
-  const actionAdd={
-    type:"add",
+const FormularioAdd = ({ dispatch }) => {
+  const [data, setData] = useState({
+    nombre: "",
+    numero: "",
+  });
+  const { nombre, numero } = data;
+  const _handleChange = (e) => {
+    setData({
+      ...data,
+      [e.target.name]: e.target.value,
+    });
+  };
+  const actionAdd = {
+    type: "add",
     payload: {
-      id:1234,
-      nombre: "nuevo",
-      numero: "0928723423"
-    }
-  }
+      id: 1234,
+      nombre,
+      numero,
+    },
+  };
 
-  const _handleAdd = (e) =>{
-    e.preventDefault()
-    dispatch(actionAdd)
-  }
+  const _handleAdd = (e) => {
+    e.preventDefault();
+    dispatch(actionAdd);
+  };
 
   return (
     <>
@@ -22,18 +32,32 @@ const FormularioAdd = ({dispatch}) => {
         <div className="container">
           <div className="mb-3">
             <label className="form-label mx-1 d-grid gap-2">Nombre</label>
-            <input type="text" className="form-control" autoComplete="off" />
+            <input
+              name="nombre"
+              value={nombre}
+              onChange={_handleChange}
+              type="text"
+              className="form-control"
+              autoComplete="off"
+            />
           </div>
           <div className="mb-3">
             <label className="form-label mx-1 d-grid gap-2">Número</label>
             <input
+              name="numero"
+              value={numero}
+              onChange={_handleChange}
               type="number"
               className="form-control"
               id="exampleInputPassword1"
             />
           </div>
           <div className="mx-1 d-grid gap-2">
-            <button onClick={_handleAdd} type="submit" className="btn btn-success mb-3">
+            <button
+              onClick={_handleAdd}
+              type="submit"
+              className="btn btn-success mb-3"
+            >
               Agregar
             </button>
           </div>
